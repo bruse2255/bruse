@@ -32,8 +32,10 @@ public class Demo extends HttpServlet {
 		System.out.println("+++++++++++++++++");
 		System.out.println("-----------------");
 		System.out.println("**************8*8");
-		System.out.println("cjw的master");
-		System.out.println("hahahaha");
+		System.out.println("分支demo");
+		System.out.println("这是第二个分支");
+		
+		
 	}
 
 	/**
