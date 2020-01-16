@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var xmlHttp;
+	function createXmlHttp(){
+	   if (window.ActiveXObject)
+	    {//判断是IE
+	        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+	    } 
+	    else {
+	        xmlHttp = new XMLHttpRequest();
+	    }   
+	}
+	
+	
+	function getProvinces() {
+		//创建对象
+		createXmlHttp();
+		//建立对服务器的调用
+		xmlHttp.open("post","province.do",true);
+		//设置回调函数
+		xmlHttp.onreadystatechange=setProvince;
+		//发送请求
+		xmlHttp.send();
+	}
+	function setProvince() {
+		if(xmlHttp.readyState==4&&xmlHttp.status==200){
+			//接收服务器响应回来得数据
+			var provinceArray = xmlHttp.responseText;
+			
+			//利用eval转化为JSON数组格式
+			eval("provinceList="+provinceArray);
+			//alert(provinceList);
+			for (var i = 0; i < provinceList.length; i++) {
+				//new Option（显示值，value值）
+				document.getElementById("provinces").options.add(new Option(provinceList[i].pname,provinceList[i].pid));
+			}
+		}
+	}
+	
+	
+	function getCitys() {
+		//创建对象
+		createXmlHttp();
+		//建立对服务器的调用
+		xmlHttp.open("post","city.do",true);
+		//设置请求头
+		xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
+		//设置回调函数
+		xmlHttp.onreadystatechange=setCity;
+		//发送请求
+		xmlHttp.send("pid="+document.getElementById("provinces").value);
+	}
+	function setCity() {
+		if(xmlHttp.readyState==4&&xmlHttp.status==200){
+			//接收服务器响应回来得数据
+			var cityArray = xmlHttp.responseText;
+			
+			//利用eval转化为JSON数组格式
+			eval("cityList="+cityArray);
+			//alert(cityList);
+			for (var i = 0; i < cityList.length; i++) {
+				//new Option（显示值，value值）
+				document.getElementById("citys").options.add(new Option(cityList[i].cname,cityList[i].cid));
+			}
+		}
+	}
+	
+	
+	
+	function getDistricts() {
+		//创建对象
+		createXmlHttp();
+		//建立对服务器的调用
+		xmlHttp.open("post","district.do",true);
+		//设置请求头
+		xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
+		//设置回调函数
+		xmlHttp.onreadystatechange=setDistrict;
+		//发送请求
+		xmlHttp.send("cid="+document.getElementById("citys").value);
+	}
+	function setDistrict() {
+		if(xmlHttp.readyState==4&&xmlHttp.status==200){
+			//接收服务器响应回来得数据
+			var districtArray = xmlHttp.responseText;
+			
+			//利用eval转化为JSON数组格式
+			eval("districtList="+districtArray);
+			//alert(cityList);
+			for (var i = 0; i < districtList.length; i++) {
+				//new Option（显示值，value值）
+				document.getElementById("districts").options.add(new Option(districtList[i].dname,districtList[i].did));
+			}
+		}
+	}
+	
+</script>
+
+
+</head>
+<body onload="getProvinces()">
+<select onchange="getCitys()" id="provinces">
+	<option >请选择省份</option>
+</select>
+<select onchange="getDistricts()" id="citys">
+	<option >请选择市区</option>
+</select>
+<select id="districts">
+	<option >请选择地区</option>
+</select>
+</body>
+</html>
