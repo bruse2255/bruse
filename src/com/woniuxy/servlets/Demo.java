@@ -36,6 +36,11 @@ public class Demo extends HttpServlet {
 		System.out.println("美丽人生");
 		System.out.println("美国往事");
 		System.out.println("hhfenakdfij");
+		
+		
+		System.out.println("+++++++++++++++++");
+		System.out.println("-----------------");
+		System.out.println("**************8*8");
 	}
 
 	/**
