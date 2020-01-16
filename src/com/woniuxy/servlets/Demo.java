@@ -27,16 +27,7 @@ public class Demo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("kekekekekeek");
-		System.out.println("cjwllllllll");
-		System.out.println("周星驰");
-		System.out.println("中国");
-		System.out.println("hahahahahah");
-		System.out.println("hhfenakdfij");
-		System.out.println("美丽人生");
-		System.out.println("美国往事");
-		System.out.println("hhfenakdfij");
-		
+	
 		
 		System.out.println("+++++++++++++++++");
 		System.out.println("-----------------");
