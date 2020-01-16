@@ -31,6 +31,8 @@ public class Demo extends HttpServlet {
 		System.out.println("cjwllllllll");
 		System.out.println("hahahahahah");
 		System.out.println("hhfenakdfij");
+		System.out.println("美丽人生");
+		System.out.println("美国往事");
 	}
 
 	/**
